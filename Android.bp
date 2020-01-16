@@ -156,6 +156,31 @@ cc_library_static {
 }
 
 //
+// [KaiOS]: wificond IPC shared library
+// To make gecko communicate with wificond via aidl.
+//
+cc_library_shared {
+    name: "libwificond_ipc_shared",
+    defaults: ["wificond_defaults"],
+    aidl: {
+        local_include_dirs: ["aidl"],
+        export_aidl_headers: true,
+    },
+    srcs: [
+        "logging_utils.cpp",
+    ],
+    shared_libs: [
+        "libbase",
+        "libbinder",
+        "libutils",
+        "libcutils",
+    ],
+    whole_static_libs: [
+        "libwificond_ipc",
+    ],
+}
+
+//
 // test util library
 //
 cc_library_static {
